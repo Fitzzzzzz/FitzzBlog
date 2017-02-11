@@ -1,4 +1,29 @@
-var app = angular.moudle('FitzzBlog',['ui.router','ngAnimate','ctrls','services']);
+var app = angular.module('FitzzBlog',['ui.router','ngAnimate','ctrls','services']);
 app.config(function($stateProvider,$urlRouterProvider){
-    
+    $urlRouterProvider.otherwise('home');
+    $stateProvider
+        .state('home',{
+            url:'/home',
+            views:{
+                '':{
+                    templateUrl:'tpls/main.html'
+                },
+                'topbar@home':{
+                    templateUrl:'tpls/topbar.html',
+                    controller:'topBarCtrl'
+                },
+                'content@home':{
+                    templateUrl:'tpls/hello.html'
+                }
+            }
+        })
+        .state('home.title',{
+            url:'/title',
+            views:{
+                'content@home':{
+                    templateUrl:'tpls/title.html',
+                    controller:'titleCtrl'
+                }
+            }
+        })
 });

@@ -1,1 +1,1 @@
-var services = angualr.moudle('services',[]);
+var services = angular.module('services',[]);
