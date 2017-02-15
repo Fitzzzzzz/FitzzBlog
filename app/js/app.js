@@ -30,4 +30,8 @@ app.config(function($stateProvider,$urlRouterProvider){
             url:'/admin',
             templateUrl:'tpls/editor.html'
         })
+        .state('home.title.article',{
+            url:'/article',
+            templateUrl:'tpls/article.html'
+        })
 });

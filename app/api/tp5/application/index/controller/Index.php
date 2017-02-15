@@ -27,7 +27,7 @@ class Index extends Controller
         // $username = input('get.username');
         // $upassword = input('get.upassword');
         if(!empty($username) && !empty($upassword)){
-            $result = Db::table('user')->where('uname',$username)->select();
+            $result = Db::name('user')->where('uname',$username)->select();
             if(!empty($result)){
                 // var_dump($result);
                 if($result[0]['upassword']===$upassword){
