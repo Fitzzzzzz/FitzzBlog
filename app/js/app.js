@@ -26,4 +26,8 @@ app.config(function($stateProvider,$urlRouterProvider){
                 }
             }
         })
+        .state('admin',{
+            url:'/admin',
+            templateUrl:'tpls/editor.html'
+        })
 });

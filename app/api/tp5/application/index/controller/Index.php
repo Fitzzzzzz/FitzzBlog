@@ -6,8 +6,12 @@ class Index extends Controller
 {   
     public function index()
     {
-        $result = Db::table('think_data')->where('id','<',4)->limit(2)->order('id','esc')->select();
-        dump(json_encode($result));
+        $result = Db::execute('CREATE TABLE IF NOT EXISTS `blog_user`(
+            `uid` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            `uname` char(20) NOT NULL,
+            `upassword` char(16) NOT NULL
+        );');
+        var_dump($result);
     }
     public function test($value='')
     {
@@ -38,9 +42,32 @@ class Index extends Controller
         }
         return json_encode($mresponse);
     }
-    public function items()
+    public function getItems()
     {
         $result = Db::table('items')->select();
+        return json_encode($result);
+    }
+    public function addArticle()
+    {
+        $create = Db::execute('CREATE TABLE IF NOT EXISTS `blog_article`(
+            `art_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            `art_title` TEXT NOT NULL,
+            `art_content` TEXT NOT NULL,
+            `create_time` INT(11) NOT NULL
+        );');
+        
+        var_dump($insert);
+        exit;
+        $title = $this->request->post('title');
+        $content = $this->request->post('content');
+        if(!empty($title) && !empty($content)){
+            $time = time();
+            $insert = Db::name('article')->insert(['art_title'=>$title,'art_content'=>$content,'create_time'=>$time]);
+        }
+    }
+    public function getArticle()
+    {
+        $result = Db::name('article')->select();
         return json_encode($result);
     }
 }
