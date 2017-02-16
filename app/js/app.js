@@ -1,4 +1,4 @@
-var app = angular.module('FitzzBlog',['ui.router','ngAnimate','ctrls','services']);
+var app = angular.module('FitzzBlog',['ui.router','ngAnimate','ctrls','services','ngDialog']);
 app.config(function($stateProvider,$urlRouterProvider){
     $urlRouterProvider.otherwise('home');
     $stateProvider

@@ -1,5 +1,5 @@
 var controllers = angular.module('ctrls',[]);
-controllers.controller('topBarCtrl',['$scope','$http','RequestUrl',function($scope,$http,RequestUrl){
+controllers.controller('topBarCtrl',['$scope','$http','RequestUrl','ngDialog',function($scope,$http,RequestUrl,ngDialog){
     $scope.items=[
 		{url:"",active:"active",content:"欢迎"},
         {url:".title",active:"",content:"全部文章"},
@@ -16,7 +16,29 @@ controllers.controller('topBarCtrl',['$scope','$http','RequestUrl',function($sco
 		$scope.items[$index].active = "active";
 		
 	}
+	$scope.clickToOpen = function(){
+		ngDialog.open({
+			template:'tpls/logindialog.html',
+			className:'ngdialog-theme-default',
+			controller:'logInCtrl'
+		});
+	}
 }]);
+controllers.controller('logInCtrl',['$scope','$state','PostToTp','ngDialog',function($scope,$state,PostToTp,ngDialog){
+	$scope.user={};
+	$scope.login=function(){
+		PostToTp.getResponse("login",{'username':$scope.user.username,'upassword':$scope.user.password}).success(
+			function(data){
+				switch(data.code){
+					case '0000' : $state.go('home.title');ngDialog.closeAll();break;
+					case '1111' : alert(data.msg);break;
+					case '2222' : alert(data.msg);break;
+					case '0011' : alert(data.msg);break;
+				}
+			}
+		).error(function(){console.log("login error!")});
+	}
+}])
 controllers.controller('titleCtrl',['$scope','$http','RequestUrl',function($scope,$http,RequestUrl){
     $scope.articles={};
 		
