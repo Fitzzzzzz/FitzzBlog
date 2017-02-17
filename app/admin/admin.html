@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<link rel="stylesheet" href="editor.md-master/css/editormd.min.css" />
+	<script src="editor.md-master/examples/js/jquery.min.js"></script>
+		<script src="editor.md-master/editormd.js"></script>
+		<script type="text/javascript">
+		    $(function() {
+		        var editor = editormd("editormd", {
+		             width   : "1000px",
+        height  : 640,
+		            path : "editor.md-master/lib/" // Autoload modules mode, codemirror, marked... dependents libs path
+		        });
+
+		        /*
+		        // or
+		        var editor = editormd({
+		            id   : "editormd",
+		            path : "../lib/"
+		        });
+		        */
+		    });
+		</script>
+</head>
+<body>
+	
+<div id="editormd" style="height: 500px">
+    <textarea style="display:none;" id="testarea">### Hello Editor.md !</textarea>
+</div>
+<div>
+	<button id="btn" >显示</button>
+</div>
+</body>
+<script>
+	var btn = document.getElementById("btn");
+	btn.onclick = function(){
+		var values = document.getElementById("testarea");
+		console.log(values.innerHTML);
+	}
+</script>
+</html>

@@ -12,6 +12,7 @@ class Index extends Controller
             `upassword` char(16) NOT NULL
         );');
         var_dump($result);
+        echo 'here is in the index method';
     }
     public function test($value='')
     {

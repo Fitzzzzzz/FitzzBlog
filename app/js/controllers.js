@@ -29,8 +29,9 @@ controllers.controller('logInCtrl',['$scope','$state','PostToTp','ngDialog',func
 	$scope.login=function(){
 		PostToTp.getResponse("login",{'username':$scope.user.username,'upassword':$scope.user.password}).success(
 			function(data){
+				console.log(data);
 				switch(data.code){
-					case '0000' : $state.go('home.title');ngDialog.closeAll();break;
+					case '0000' : window.location.href="http://localhost/admin/admin.html";ngDialog.closeAll();break;
 					case '1111' : alert(data.msg);break;
 					case '2222' : alert(data.msg);break;
 					case '0011' : alert(data.msg);break;
