@@ -66,9 +66,14 @@ controllers.controller('titleCtrl',['$scope','$http','RequestUrl','Article',func
 		}
 	}
 }]);
-controllers.controller('articleCtrl',['$scope','Article',function($scope,Article){
+controllers.controller('articleCtrl',['$scope','$rootScope','$state','Article',function($scope,$rootScope,$state,Article){
 	$scope.articles = Article.articles;
 	$scope.showContent = function($index){
-		
+		$rootScope.content = $scope.articles[$index].art_content;
+		console.log($scope.articles[$index].art_content);
+		$state.go('home.title.content');
 	}
+}]);
+controllers.controller('editorCtrl',['$scope','$rootScope',function($scope,$rootScope){
+	$scope.content = $rootScope.content;
 }]);

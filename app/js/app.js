@@ -35,4 +35,9 @@ app.config(function($stateProvider,$urlRouterProvider){
             templateUrl:'tpls/article.html',
             controller:'articleCtrl'
         })
+        .state('home.title.content',{
+            url:'/content',
+            templateUrl:'tpls/editor.html',
+            controller:'editorCtrl'
+        })
 });

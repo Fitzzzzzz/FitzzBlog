@@ -1,14 +1,22 @@
-
-    
-
-<div id="editormd">
-    <textarea style="display:block;">### Hello Editor.md !</textarea>
+<div id="editormd" style="height: 500px">
+	<textarea style="display:none;" id="textarea">{{content}}</textarea>
 </div>
+<p>ttttt</p>
 <script type="text/javascript">
-    $(function() {
-        var testEditor = editormd("test-editormd", {
-            path : 'framworks/editor.md-master/lib'
-        });
-    });
-    </script>
+		    $(function() {
+		        var editor = editormd("editormd", {
+		             width   : "1000px",
+        height  : 640,
+		            path : "editor.md-master/lib/" // Autoload modules mode, codemirror, marked... dependents libs path
+		        });
+
+		        /*
+		        // or
+		        var editor = editormd({
+		            id   : "editormd",
+		            path : "../lib/"
+		        });
+		        */
+		    });
+</script>
 
