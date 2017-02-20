@@ -57,8 +57,8 @@ class Index extends Controller
             `create_time` INT(11) NOT NULL
         );');
         
-        var_dump($insert);
-        exit;
+        // var_dump($insert);
+        // exit;
         $title = $this->request->post('title');
         $content = $this->request->post('content');
         if(!empty($title) && !empty($content)){

@@ -27,3 +27,9 @@ services.service('PostToTp',['$rootScope','$http','RequestUrl',function($rootSco
 		}
 	}
 }]);
+services.service('Article',['$rootScope',function($rootScope){
+	var service = {
+		articles:{}
+	}
+	return service;
+}]);

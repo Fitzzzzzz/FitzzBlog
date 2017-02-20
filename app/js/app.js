@@ -21,7 +21,7 @@ app.config(function($stateProvider,$urlRouterProvider){
             url:'/title',
             views:{
                 'content@home':{
-                    templateUrl:'tpls/title.html',
+                    templateUrl:'tpls/leftnav.html',
                     controller:'titleCtrl'
                 }
             }
@@ -32,6 +32,7 @@ app.config(function($stateProvider,$urlRouterProvider){
         })
         .state('home.title.article',{
             url:'/article',
-            templateUrl:'tpls/article.html'
+            templateUrl:'tpls/article.html',
+            controller:'articleCtrl'
         })
 });

@@ -1,15 +1,15 @@
-<div class="col s12 m4" ng-repeat="article in articles">
-    <h2 class="header">Horizontal Card</h2>
+<div class="col s12 m6" ng-repeat="article in articles">
+    <h2 class="header">{{article.art_title}}</h2>
     <div class="card horizontal">
       <div class="card-image">
         <img src="http://lorempixel.com/100/190/nature/6">
       </div>
       <div class="card-stacked">
         <div class="card-content">
-          <p>{{article.art_title}}.</p>
+          <p>{{article.art_content}}.</p>
         </div>
         <div class="card-action">
-          <a href="#">This is a link</a>
+          <a href="" ng-click="showContent($index)">查看详情</a>
         </div>
       </div>
     </div>

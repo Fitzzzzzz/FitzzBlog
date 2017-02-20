@@ -39,10 +39,9 @@ controllers.controller('logInCtrl',['$scope','$state','PostToTp','ngDialog',func
 			}
 		).error(function(){console.log("login error!")});
 	}
-}])
-controllers.controller('titleCtrl',['$scope','$http','RequestUrl',function($scope,$http,RequestUrl){
-    $scope.articles={};
-		
+}]);
+controllers.controller('titleCtrl',['$scope','$http','RequestUrl','Article',function($scope,$http,RequestUrl,Article){
+    $scope.articles=[];
 	$scope.left_nav_items=[
 		{url:"",active:"active",content:"NAV ITEM 1"},
 		{url:".article",active:"",content:"NAV ITEM 2"},
@@ -59,11 +58,17 @@ controllers.controller('titleCtrl',['$scope','$http','RequestUrl',function($scop
 				method:'get',
 				url:RequestUrl.url+"getArticle"
 			}).success(function(data){
-				$scope.articles = data;
-				console.log($scope.articles);
+				Article.articles = data;
+				console.log(Article.articles);
 			}).error(function(){
 				console.log("http get error");
 			})
 		}
+	}
+}]);
+controllers.controller('articleCtrl',['$scope','Article',function($scope,Article){
+	$scope.articles = Article.articles;
+	$scope.showContent = function($index){
+		
 	}
 }]);
