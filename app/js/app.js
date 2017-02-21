@@ -1,5 +1,5 @@
-var app = angular.module('FitzzBlog',['ui.router','ngAnimate','ctrls','services','ngDialog']);
-app.config(function($stateProvider,$urlRouterProvider){
+var app = angular.module('FitzzBlog',['ui.router','ngAnimate','ctrls','services','ngDialog','hc.marked']);
+app.config(function($stateProvider,$urlRouterProvider,markedProvider){
     $urlRouterProvider.otherwise('home');
     $stateProvider
         .state('home',{
@@ -39,5 +39,16 @@ app.config(function($stateProvider,$urlRouterProvider){
             url:'/content',
             templateUrl:'tpls/editor.html',
             controller:'editorCtrl'
-        })
+        });
+        markedProvider.setOptions({
+            gfm: true,
+            tables: true,
+            highlight: function (code, lang) {
+            if (lang) {
+                return hljs.highlight(lang, code, true).value;
+            } else {
+                return hljs.highlightAuto(code).value;
+            }
+            }
+        });
 });
