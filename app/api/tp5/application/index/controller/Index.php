@@ -71,4 +71,9 @@ class Index extends Controller
         $result = Db::name('article')->select();
         return json_encode($result);
     }
+    public function getArticleTime()
+    {
+        $result = Db::query('SELECT `create_time` FROM `blog_article`;');
+        return json_encode($result);
+    }
 }

@@ -40,14 +40,37 @@ controllers.controller('logInCtrl',['$scope','$state','PostToTp','ngDialog',func
 		).error(function(){console.log("login error!")});
 	}
 }]);
-controllers.controller('titleCtrl',['$scope','$http','RequestUrl','Article',function($scope,$http,RequestUrl,Article){
+controllers.controller('titleCtrl',['$scope','$http','$filter','RequestUrl','Article',function($scope,$http,$filter,RequestUrl,Article){
     $scope.articles=[];
-	$scope.left_nav_items=[
-		{url:"",active:"active",content:"NAV ITEM 1"},
-		{url:".article",active:"",content:"NAV ITEM 2"},
-		{url:"",active:"",content:"NAV ITEM 3"},
-		{url:"",active:"",content:"NAV ITEM 4"},
-	];
+	$scope.left_nav_items=[{url:".article",active:"active",contents:"2016-12"},
+							{url:".article",active:"",contents:"2017-1"}
+							];
+	$scope.articles_time=new Array();
+	$http({
+				method:'get',
+				url:RequestUrl.url+"getArticleTime"
+			}).success(function(data){
+				// for(var i = 0;i < data.length;i++){
+				// 	var time  = $filter("date")(data[i].create_time*1000,"yyyy-MM-dd");
+				// 	$scope.articles_time.push(time);
+				// }
+				// console.log("articles_time = "+$scope.articles_time);
+				// var tem = {url:".article",active:"active",contents:""}
+				// tem.contents = $scope.articles_time[0];
+				// $scope.left_nav_items.push(tem);
+				// console.log("first push ==== " + $scope.left_nav_items);
+				// for(var i = 1;i < $scope.articles_time.length;i++){
+				// 	var tem2 = {url:".article",active:"",contents:""};
+				// 	if($scope.left_nav_items[i-1].contents !== $scope.articles_time[i]){
+				// 		tem2.contents = $scope.create_time[i];
+				// 		$scope.left_nav_items.push(tem2);
+				// 	}
+				// }
+				// console.log("left---" + $scope.left_nav_items);
+			}).error(function(){
+				console.log("http get error");
+			});
+	
 	$scope.changeLeftNav = function($index){
 		for (var i = 0; i < $scope.left_nav_items.length; i++) {
 			$scope.left_nav_items[i].active = "";
